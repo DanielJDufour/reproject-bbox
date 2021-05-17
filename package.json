@@ -33,5 +33,8 @@
   "bugs": {
     "url": "https://github.com/DanielJDufour/reproject-bbox/issues"
   },
-  "homepage": "https://github.com/DanielJDufour/reproject-bbox#readme"
+  "homepage": "https://github.com/DanielJDufour/reproject-bbox#readme",
+  "dependencies": {
+    "proj4-fully-loaded": "^0.0.2"
+  }
 }
