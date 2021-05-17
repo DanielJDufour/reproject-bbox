@@ -1,0 +1,37 @@
+{
+  "name": "reproject-bbox",
+  "version": "0.0.0",
+  "description": "Reproject a Bounding Box",
+  "main": "reproject-bbox.js",
+  "files": [
+    "reproject-bbox.js"
+  ],
+  "scripts": {
+    "format": "npx prettier --write *.js",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielJDufour/reproject-bbox.git"
+  },
+  "keywords": [
+    "bbox",
+    "boundingbox",
+    "crs",
+    "geography",
+    "geospatial",
+    "gis",
+    "map",
+    "proj",
+    "project",
+    "proj4",
+    "reproject",
+    "srs"
+  ],
+  "author": "Daniel J. Dufour",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/DanielJDufour/reproject-bbox/issues"
+  },
+  "homepage": "https://github.com/DanielJDufour/reproject-bbox#readme"
+}
