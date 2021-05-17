@@ -1,18 +1,15 @@
-# proj4-bbox
-> Functions for Reprojecting Bounding Boxes with Proj4
+# reproject-bbox
+> Reproject a Bounding Box
 
 # install
 ```bash
-npm install proj4-bbox
+npm install reproject-bbox
 ```
 
 # usage
 ```javascript
 
-const { reprojectBoundingBox } = require("proj4-bbox");
-
-const ;
-const srs = 4326;
+const reprojectBoundingBox = require("reproject-bbox");
 
 const result = reprojectBoundingBox({
   bbox: [ -122.51, 40.97, -122.34, 41.11 ],
