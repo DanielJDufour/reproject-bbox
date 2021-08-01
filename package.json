@@ -36,10 +36,10 @@
     "url": "https://github.com/DanielJDufour/reproject-bbox/issues"
   },
   "homepage": "https://github.com/DanielJDufour/reproject-bbox#readme",
-  "dependencies": {
-    "proj4-fully-loaded": "^0.0.2"
-  },
   "devDependencies": {
     "flug": "^2.1.0"
+  },
+  "dependencies": {
+    "proj4-fully-loaded": "^0.0.4"
   }
 }
