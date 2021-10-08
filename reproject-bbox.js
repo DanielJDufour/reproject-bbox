@@ -4,7 +4,14 @@ module.exports = ({ bbox, from, to }) => {
   if (typeof from === "number") from = "EPSG:" + from;
   if (typeof to === "number") to = "EPSG:" + to;
 
-  const fwd = proj4(from, to).forward;
+  let proj;
+  if (typeof proj4 === "function" && proj4.defs && from in proj4.defs && to in proj4.defs) {
+    proj = proj4;
+  } else if (typeof window === "object" && typeof window.proj4 === "function" && window.proj4.defs && from in window.proj4.defs && to in window.proj4.defs) {
+    proj = window.proj4;
+  }
+
+  const fwd = proj(from, to).forward;
   const [xmin, ymin, xmax, ymax] = bbox;
 
   const topleft = fwd([xmin, ymax]);

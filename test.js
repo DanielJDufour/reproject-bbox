@@ -15,12 +15,7 @@ test("geographic to web mercator", ({ eq }) => {
     // convert bounding box to this spatial reference system
     to: 3857,
   });
-  eq(bbox, [
-    -13637750.817083945,
-    5007917.677222896,
-    -13618826.503649088,
-    5028580.202823918,
-  ]);
+  eq(bbox, [-13637750.817083945, 5007917.677222896, -13618826.503649088, 5028580.202823918]);
 });
 
 test("utm conversion", ({ eq }) => {
@@ -36,10 +31,20 @@ test("utm conversion", ({ eq }) => {
     // convert bounding box to this spatial reference system
     to: 32617,
   });
-  eq(bbox, [
-    -3010997.366626169,
-    5447962.517672182,
-    -2987728.4090058263,
-    5471756.682451112,
-  ]);
+  eq(bbox, [-3010997.366626169, 5447962.517672182, -2987728.4090058263, 5471756.682451112]);
+});
+
+test("right edge lies on -180", ({ eq }) => {
+  const bbox = reprojectBoundingBox({
+    bbox: [-185, 10, -180, 20],
+    from: 4326,
+    to: 3857,
+  });
+  console.log("rep bbox", bbox);
+  const bbox2 = reprojectBoundingBox({
+    bbox: [175, 10, 180, 20],
+    from: 4326,
+    to: 3857,
+  });
+  console.log("rep bbox", bbox2);
 });

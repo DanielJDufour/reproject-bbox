@@ -7,7 +7,7 @@
     "reproject-bbox.js"
   ],
   "scripts": {
-    "format": "npx prettier --write *.js",
+    "format": "npx prettier --print-width=180 --write *.js",
     "test:cjs": "node test.js",
     "test:mjs": "node test.mjs",
     "test": "npm run test:cjs && npm run test:mjs"
