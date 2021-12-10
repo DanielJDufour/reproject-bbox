@@ -1,15 +1,15 @@
+const merge = require("proj4-merge");
 const proj4 = require("proj4-fully-loaded");
 
-module.exports = ({ bbox, from, to }) => {
+module.exports = ({ bbox, from, proj4: _proj4, to }) => {
   if (typeof from === "number") from = "EPSG:" + from;
   if (typeof to === "number") to = "EPSG:" + to;
 
-  let proj;
-  if (typeof proj4 === "function" && proj4.defs && from in proj4.defs && to in proj4.defs) {
-    proj = proj4;
-  } else if (typeof window === "object" && typeof window.proj4 === "function" && window.proj4.defs && from in window.proj4.defs && to in window.proj4.defs) {
-    proj = window.proj4;
-  }
+  const instances = [_proj4, proj4];
+  if (typeof window === "object" && window.proj4) instances.push(window.proj4);
+  if (typeof self === "object" && self.proj4) instances.push(self.proj4);
+
+  const proj = merge(instances);
 
   const fwd = proj(from, to).forward;
   const [xmin, ymin, xmax, ymax] = bbox;

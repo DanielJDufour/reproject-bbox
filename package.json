@@ -40,6 +40,7 @@
     "flug": "^2.1.0"
   },
   "dependencies": {
-    "proj4-fully-loaded": "^0.0.4"
+    "proj4-fully-loaded": "^0.0.4",
+    "proj4-merge": "^0.0.2"
   }
 }
