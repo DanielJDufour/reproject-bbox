@@ -1,6 +1,8 @@
 const test = require("flug");
+const proj4 = require("proj4-fully-loaded");
 
 const reprojectBoundingBox = require("./reproject-bbox");
+const reprojectBoundingBoxPluggable = require("./pluggable");
 
 test("geographic to web mercator", ({ eq }) => {
   const bbox = reprojectBoundingBox({
@@ -14,6 +16,14 @@ test("geographic to web mercator", ({ eq }) => {
 
     // convert bounding box to this spatial reference system
     to: 3857,
+  });
+  eq(bbox, [-13637750.817083945, 5007917.677222896, -13618826.503649088, 5028580.202823918]);
+});
+
+test("geographic to web mercator (pluggable)", ({ eq }) => {
+  const bbox = reprojectBoundingBoxPluggable({
+    bbox: [-122.51, 40.97, -122.34, 41.11],
+    reproject: proj4("EPSG:4326", "EPSG:3857").forward,
   });
   eq(bbox, [-13637750.817083945, 5007917.677222896, -13618826.503649088, 5028580.202823918]);
 });

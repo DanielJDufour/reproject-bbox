@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+    <script src="./reproject-bbox.min.js"></script>
+    <style>
+      label {
+        display: inline-block;
+        font-size: 14pt;
+        margin-top: 30px;
+        max-width: 100%;
+        width: 450px;
+      }
+      input {
+        box-sizing: border-box;
+        font-size: 14pt;
+        max-width: 100%;
+        width: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>reproject-bbox demo</h1>
+    
+    <div>
+      <label for="old-bbox">Bounding Box String in format xmin, ymin, xmax, ymax</label>
+      <input id="old-bbox" type="text" value="-122.51, 40.97, -122.34, 41.11">    
+    </div>
+
+    <div>
+      <label for="old-proj">Current Projection</label>
+      <input id="old-proj" type="text" value="4326">    
+    </div>
+
+    <div>
+      <label for="new-proj">New Projection</label>
+      <input id="new-proj" type="text" value="3857">  
+    </div>
+
+    <div>
+      <label for="new-bbox">New Bounding Box</label>
+      <input id="new-bbox" type="text">  
+    </div>
+
+    <script>
+      function update_new_bbox () {
+        const old_bbox = document.getElementById("old-bbox");
+          const old_proj = document.getElementById("old-proj");
+          const new_bbox = document.getElementById("new-bbox");
+          const new_proj = document.getElementById("new-proj");
+
+          try {
+            new_bbox.value = reprojectBoundingBox({
+              bbox: old_bbox.value.replace(/ /g, "").split(",").map(str => Number(str)),
+              from: "EPSG:" + old_proj.value,
+              to: "EPSG:" + new_proj.value
+            }).join(", ");
+          } catch (error) {
+            console.error(error);
+            new_bbox.value = "";
+          }
+      }
+      document.querySelectorAll("input").forEach(input => {
+        input.addEventListener("input", update_new_bbox);
+      });
+      update_new_bbox();
+    </script>
+  </body>
+</html>

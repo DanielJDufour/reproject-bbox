@@ -4,10 +4,13 @@
   "description": "Reproject a Bounding Box",
   "main": "reproject-bbox.js",
   "files": [
-    "reproject-bbox.js"
+    "reproject-bbox.js",
+    "reproject-bbox.min.js",
+    "pluggable.js"
   ],
   "scripts": {
-    "format": "npx prettier --print-width=180 --write *.js",
+    "build": "npx browserify ./reproject-bbox.js > reproject-bbox.min.js",
+    "format": "npx prettier --print-width=180 --write pluggable.js reproject-bbox.js test.*js",
     "test:cjs": "node test.js",
     "test:mjs": "node test.mjs",
     "test": "npm run test:cjs && npm run test:mjs"
