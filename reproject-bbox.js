@@ -18,10 +18,21 @@ function reprojectBoundingBox({ bbox, from, proj4: _proj4, to }) {
   return reprojectBoundingBoxPluggable({ bbox, reproject: fwd });
 }
 
-if (typeof define === "function" && define.amd)
+if (typeof define === "function" && define.amd) {
   define(function () {
     return reprojectBoundingBox;
   });
-if (typeof module === "object") module.exports = reprojectBoundingBox;
-if (typeof window === "object") window.reprojectBoundingBox = reprojectBoundingBox;
-if (typeof self === "object") self.reprojectBoundingBox = reprojectBoundingBox;
+}
+
+if (typeof module === "object") {
+  module.exports = reprojectBoundingBox;
+  module.exports.default = reprojectBoundingBox;
+}
+
+if (typeof window === "object") {
+  window.reprojectBoundingBox = reprojectBoundingBox;
+}
+
+if (typeof self === "object") {
+  self.reprojectBoundingBox = reprojectBoundingBox;
+}
