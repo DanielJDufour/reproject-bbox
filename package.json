@@ -51,6 +51,6 @@
   },
   "dependencies": {
     "proj4-fully-loaded": "^0.1.0",
-    "proj4-merge": "^0.1.0"
+    "proj4-merge": "^0.1.1"
   }
 }

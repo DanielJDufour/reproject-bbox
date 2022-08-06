@@ -3,6 +3,10 @@ const proj4 = require("proj4-fully-loaded");
 
 const reprojectBoundingBoxPluggable = require("./pluggable.js");
 
+if (typeof merge !== "function") {
+  console.warn("[reproject-bbox] failed to import proj4-merge");
+}
+
 function reprojectBoundingBox({ bbox, from, proj4: _proj4, to }) {
   if (typeof from === "number") from = "EPSG:" + from;
   if (typeof to === "number") to = "EPSG:" + to;
