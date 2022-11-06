@@ -50,7 +50,7 @@
     "flug": "^2.3.1"
   },
   "dependencies": {
-    "proj4-fully-loaded": "^0.1.0",
+    "proj4-fully-loaded": "^0.2.0",
     "proj4-merge": "^0.1.1"
   }
 }
