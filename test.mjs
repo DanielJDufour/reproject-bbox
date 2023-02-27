@@ -33,3 +33,19 @@ test("utm conversion", ({ eq }) => {
   });
   eq(bbox, [-3010997.366626169, 5447962.517672182, -2987728.4090058263, 5471756.682451112]);
 });
+
+test("reproject box with northern bend", ({ eq }) => {
+  const bbox = [-2316545, -1971615, 1015455, 1512385];
+  const srs = 6623;
+
+  const xmin = -104.15783650020958;
+  const ymin = 22.33428366410961;
+  const xmax = -51.769705847928805;
+
+  eq(reprojectBoundingBox({ bbox, from: srs, to: 4326 }), [xmin, ymin, xmax, 56.48158793780131]);
+  eq(reprojectBoundingBox({ bbox, density: 0, from: srs, to: 4326 }), [xmin, ymin, xmax, 56.48158793780131]);
+  eq(reprojectBoundingBox({ bbox, density: 1, from: srs, to: 4326 }), [xmin, ymin, xmax, 57.099578714450445]);
+  eq(reprojectBoundingBox({ bbox, density: 10, from: srs, to: 4326 }), [xmin, ymin, xmax, 57.52407399197629]);
+  eq(reprojectBoundingBox({ bbox, density: 100, from: srs, to: 4326 }), [xmin, ymin, xmax, 57.53583071204875]);
+  eq(reprojectBoundingBox({ bbox, density: 1000, from: srs, to: 4326 }), [xmin, ymin, xmax, 57.53588499736936]);
+});

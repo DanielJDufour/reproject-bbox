@@ -7,7 +7,7 @@ if (typeof merge !== "function") {
   console.warn("[reproject-bbox] failed to import proj4-merge");
 }
 
-function reprojectBoundingBox({ bbox, from, proj4: _proj4, to }) {
+function reprojectBoundingBox({ bbox, density, from, proj4: _proj4, to }) {
   if (typeof from === "number") from = "EPSG:" + from;
   if (typeof to === "number") to = "EPSG:" + to;
 
@@ -19,7 +19,7 @@ function reprojectBoundingBox({ bbox, from, proj4: _proj4, to }) {
 
   const fwd = proj(from, to).forward;
 
-  return reprojectBoundingBoxPluggable({ bbox, reproject: fwd });
+  return reprojectBoundingBoxPluggable({ bbox, density, reproject: fwd });
 }
 
 if (typeof define === "function" && define.amd) {

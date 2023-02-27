@@ -1,17 +1,10 @@
-function reprojectBoundingBoxPluggable({ bbox, reproject }) {
-  const [xmin, ymin, xmax, ymax] = bbox;
+const bboxArray = require("bbox-fns/bbox-array.js");
+const densePolygon = require("bbox-fns/dense-polygon.js");
 
-  const topleft = reproject([xmin, ymax]);
-  const topright = reproject([xmax, ymax]);
-  const bottomleft = reproject([xmin, ymin]);
-  const bottomright = reproject([xmax, ymin]);
-
-  const corners = [topleft, topright, bottomleft, bottomright];
-
-  const xs = corners.map((corner) => corner[0]);
-  const ys = corners.map((corner) => corner[1]);
-
-  return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+function reprojectBoundingBoxPluggable({ bbox, density, reproject }) {
+  const polygon = densePolygon(bbox, { density });
+  const ring = polygon[0];
+  return bboxArray(ring.map((pt) => reproject(pt)));
 }
 
 if (typeof define === "function" && define.amd)
