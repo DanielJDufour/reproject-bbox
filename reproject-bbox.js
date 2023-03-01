@@ -1,7 +1,6 @@
 const merge = require("proj4-merge");
 const proj4 = require("proj4-fully-loaded");
-
-const reprojectBoundingBoxPluggable = require("./pluggable.js");
+const reproject = require("bbox-fns/reproject.js");
 
 if (typeof merge !== "function") {
   console.warn("[reproject-bbox] failed to import proj4-merge");
@@ -19,7 +18,7 @@ function reprojectBoundingBox({ bbox, density, from, proj4: _proj4, to }) {
 
   const fwd = proj(from, to).forward;
 
-  return reprojectBoundingBoxPluggable({ bbox, density, reproject: fwd });
+  return reproject(bbox, fwd, { density });
 }
 
 if (typeof define === "function" && define.amd) {
