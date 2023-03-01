@@ -9,14 +9,14 @@
   "files": [
     "reproject-bbox.d.ts",
     "reproject-bbox.js",
-    "reproject-bbox.min.js",
-    "pluggable.js"
+    "reproject-bbox.min.js"
   ],
   "scripts": {
     "b": "npm run build",
     "build": "npx browserify ./reproject-bbox.js > reproject-bbox.min.js",
     "f": "npm run format",
     "format": "npx prettier --print-width=180 --write reproject-bbox.js test.js test.mjs test.ts",
+    "prepublishOnly": "npm run format && npm run build && npm run test",
     "test:cjs": "node test.js",
     "test:mjs": "node test.mjs",
     "test:ts": "npx ts-node ./test.ts",
