@@ -47,10 +47,10 @@
   },
   "homepage": "https://github.com/DanielJDufour/reproject-bbox#readme",
   "devDependencies": {
-    "bbox-fns": "^0.4.0",
     "flug": "^2.5.0"
   },
   "dependencies": {
+    "bbox-fns": "^0.4.0",
     "proj4-fully-loaded": "^0.2.0",
     "proj4-merge": "^0.1.1"
   }
