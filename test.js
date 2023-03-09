@@ -69,5 +69,5 @@ test("throw error on 32767", ({ eq }) => {
   } catch (error) {
     msg = error.message;
   }
-  eq(msg.startsWith(`"[reproject-bbox] You passed in a value of 32767 for from`), true);
+  eq(msg.startsWith(`[reproject-bbox] You passed in a value of 32767 for from`), true);
 });
