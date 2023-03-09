@@ -1,5 +1,4 @@
 const test = require("flug");
-const proj4 = require("proj4-fully-loaded");
 
 const reprojectBoundingBox = require("./reproject-bbox");
 
@@ -57,4 +56,18 @@ test("conversion from wkt srs", ({ eq }) => {
     to: 4326,
   });
   eq(bbox, [-122.51000000000002, 40.969999999999985, -122.34, 41.109999999999985]);
+});
+
+test("throw error on 32767", ({ eq }) => {
+  let msg;
+  try {
+    reprojectBoundingBox({
+      bbox: [-13637750.817083945, 5007917.677222896, -13618826.503649088, 5028580.202823918],
+      from: 32767,
+      to: 4326,
+    });
+  } catch (error) {
+    msg = error.message;
+  }
+  eq(msg.startsWith(`"[reproject-bbox] You passed in a value of 32767 for from`), true);
 });

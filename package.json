@@ -47,7 +47,7 @@
   },
   "homepage": "https://github.com/DanielJDufour/reproject-bbox#readme",
   "devDependencies": {
-    "flug": "^2.5.0"
+    "flug": "^2.6.0"
   },
   "dependencies": {
     "bbox-fns": "^0.5.0",
