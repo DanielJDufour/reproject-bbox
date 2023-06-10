@@ -1,6 +1,6 @@
 {
   "name": "reproject-bbox",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Reproject a Bounding Box",
   "main": "reproject-bbox.js",
   "unpkg": "reproject-bbox.min.js",
