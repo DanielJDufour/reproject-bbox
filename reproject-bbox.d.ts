@@ -9,6 +9,7 @@ export default function reprojectBoundingBox({
   density?: number | undefined,
   from: number | string,
   proj4?: any,
+  split?: boolean | undefined,
   to: number | string
 }): [number, number, number, number];
 
