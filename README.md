@@ -67,6 +67,18 @@ reprojectBoundingBox({
 });
 ```
 
+## split
+reproject-bbox will automatically split bounding boxes where x=0 and y=0 before reprojecting and merging them back together.  This can greatly improve accuracy for certain projections, especially ones around the poles.  However, if you really want to turn it off, you can.
+```js
+reprojectBoundingBox({
+  bbox,
+  from: 3857,
+  split: false, // turn off automatic splitting
+  to: 4326
+})
+```
+
+
 ## proj4-fully-loaded dependency
 This library depends on [proj4-fully-loaded](https://github.com/DanielJDufour/proj4-fully-loaded).
 If proj4-fully-loaded isn't found (perhaps because you used [null-loader](https://v4.webpack.js.org/loaders/null-loader/), then reproject-bbox will attempt to look for a valid proj4 at window.proj4.

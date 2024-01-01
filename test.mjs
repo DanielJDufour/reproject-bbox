@@ -42,10 +42,12 @@ test("reproject box with northern bend", ({ eq }) => {
   const ymin = 22.33428366410961;
   const xmax = -51.769705847928805;
 
-  eq(reprojectBoundingBox({ bbox, from: srs, to: 4326 }), [xmin, ymin, xmax, 56.48158793780131]);
-  eq(reprojectBoundingBox({ bbox, density: 0, from: srs, to: 4326 }), [xmin, ymin, xmax, 56.48158793780131]);
-  eq(reprojectBoundingBox({ bbox, density: 1, from: srs, to: 4326 }), [xmin, ymin, xmax, 57.099578714450445]);
-  eq(reprojectBoundingBox({ bbox, density: 10, from: srs, to: 4326 }), [xmin, ymin, xmax, 57.52407399197629]);
-  eq(reprojectBoundingBox({ bbox, density: 100, from: srs, to: 4326 }), [xmin, ymin, xmax, 57.53583071204875]);
-  eq(reprojectBoundingBox({ bbox, density: 1000, from: srs, to: 4326 }), [xmin, ymin, xmax, 57.53588499736936]);
+  eq(reprojectBoundingBox({ bbox, from: srs, split: false, to: 4326 }), [xmin, ymin, xmax, 56.48158793780131]);
+  eq(reprojectBoundingBox({ bbox, density: 0, from: srs, split: false, to: 4326 }), [xmin, ymin, xmax, 56.48158793780131]);
+  eq(reprojectBoundingBox({ bbox, density: 1, from: srs, split: false, to: 4326 }), [xmin, ymin, xmax, 57.099578714450445]);
+  eq(reprojectBoundingBox({ bbox, density: 10, from: srs, split: false, to: 4326 }), [xmin, ymin, xmax, 57.52407399197629]);
+  eq(reprojectBoundingBox({ bbox, density: 100, from: srs, split: false, to: 4326 }), [xmin, ymin, xmax, 57.53583071204875]);
+  eq(reprojectBoundingBox({ bbox, density: 1000, from: srs, split: false, to: 4326 }), [xmin, ymin, xmax, 57.53588499736936]);
+
+  eq(reprojectBoundingBox({ bbox, from: srs, split: true, to: 4326 }), [xmin, ymin, xmax, 57.53588504321043]);
 });

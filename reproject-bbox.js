@@ -1,5 +1,7 @@
 const merge = require("proj4-merge");
 const proj4 = require("proj4-fully-loaded");
+const bboxMerge = require("bbox-fns/merge.js");
+const bboxSplit = require("bbox-fns/split.js");
 const reproject = require("bbox-fns/reproject.js");
 
 if (typeof merge !== "function") {
@@ -9,7 +11,7 @@ if (typeof merge !== "function") {
 const CUSTOM_PROJECTION_ERROR =
   "[reproject-bbox] You passed in a value of 32767 for {{%s}}, which means a custom non-standard projection.  Please pass in a Well-Known Text or PROJ4JS String instead.";
 
-function reprojectBoundingBox({ bbox, density, from, proj4: _proj4, to }) {
+function reprojectBoundingBox({ bbox, density, from, proj4: _proj4, split = true, to }) {
   if (from === 32767) throw new Error(CUSTOM_PROJECTION_ERROR.replace("{{%s}}", "from"));
   if (to === 32767) throw new Error(CUSTOM_PROJECTION_ERROR.replace("{{%s}}", "to"));
 
@@ -24,7 +26,15 @@ function reprojectBoundingBox({ bbox, density, from, proj4: _proj4, to }) {
 
   const fwd = proj(from, to).forward;
 
-  return reproject(bbox, fwd, { density });
+  const bboxes = split ? bboxSplit(bbox, { x: [0], y: [0] }) : [bbox];
+
+  const bboxes_reprojected = bboxes.map((bbox) => {
+    return reproject(bbox, fwd, { density });
+  });
+
+  const merged = bboxMerge(bboxes_reprojected);
+
+  return merged;
 }
 
 if (typeof define === "function" && define.amd) {
