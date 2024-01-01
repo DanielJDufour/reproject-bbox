@@ -71,3 +71,28 @@ test("throw error on 32767", ({ eq }) => {
   }
   eq(msg.startsWith(`[reproject-bbox] You passed in a value of 32767 for from`), true);
 });
+
+test("4326 to web mercator", ({ eq }) => {
+  const reprojected = reprojectBoundingBox({
+    bbox: [-180, -90, 180, 90],
+    density: 100,
+    from: "EPSG:4326",
+    nan_strategy: "skip",
+    split: false,
+    to: "EPSG:3857",
+  });
+  eq(reprojected, [-20037508.342789244, -26555100.29330386, 20037508.342789244, 26555100.293303788]);
+});
+
+test("4326 to web mercator (again)", ({ eq }) => {
+  const reprojected = reprojectBoundingBox({
+    bbox: [-180, -89.99928, 179.99856, 90],
+    debug_level: 0,
+    density: 100,
+    from: "EPSG:4326",
+    nan_strategy: "skip",
+    split: false,
+    to: "EPSG:3857",
+  });
+  eq(reprojected, [-20037508.342789244, -76394987.3448674, 20037348.0427225, 26555125.810017247]);
+});

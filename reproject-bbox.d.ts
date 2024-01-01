@@ -8,6 +8,7 @@ export default function reprojectBoundingBox({
   bbox: [number, number, number, number] | Readonly<[number, number, number, number]>,
   density?: number | undefined,
   from: number | string,
+  nan_strategy?: "skip" | "throw" | string | undefined,
   proj4?: any,
   split?: boolean | undefined,
   to: number | string
